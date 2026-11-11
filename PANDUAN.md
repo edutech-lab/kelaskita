@@ -64,7 +64,7 @@ Catatan penting:
 - Backup bersifat manual. Biasakan mengunduh sebelum perubahan besar (awal semester, impor data, naik kelas, dll).
 
 ## 7. Memperbarui aplikasi
-1. Ubah file di `public/`. Naikkan `VERSION` di `public/sw.js` (sekarang `kk-v7`, berikutnya `kk-v8`, dst.).
+1. Ubah file di `public/`. Naikkan `VERSION` di `public/sw.js` (sekarang `kk-v8`, berikutnya `kk-v9`, dst.).
 2. `git commit` lalu `git push`. Vercel otomatis deploy.
 3. Pengguna membuka aplikasi dengan internet aktif; tutup lalu buka lagi bila tampilan belum berubah.
 
@@ -99,6 +99,6 @@ Upload tugas memanggil script.google.com langsung dan tidak pernah di-cache oleh
 - Jika `firestore.rules` Anda membatasi ID dokumen `nilai` atau `bobot` dengan pola tertentu, sesuaikan agar ID berakhiran
   `_TAHUN_SEMESTER` (mis. `_2026-2027_2`) tetap diizinkan, lalu uji sekali di semester Genap.
 
-## 12. Rekap Nilai dan Input Nilai
-Rekap Nilai dan tabel Input Nilai menampilkan seluruh siswa satu kelas tanpa pembagian halaman. Halaman yang di-scroll (sama seperti Rekap Presensi);
+## 12. Input Presensi, Input Nilai, dan Rekap Nilai
+Tabel Input Presensi, Input Nilai, dan Rekap Nilai menampilkan seluruh siswa satu kelas tanpa pembagian halaman. Halaman yang di-scroll (sama seperti Rekap Presensi);
 tabel hanya bergeser ke samping bila kolomnya banyak. Ekspor Excel dan Print A4 memakai seluruh data kelas.
