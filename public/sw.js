@@ -1,5 +1,5 @@
 /* Service Worker - KelasKita. Naikkan VERSION setiap kali index.html diperbarui. */
-const VERSION = 'kk-v10';
+const VERSION = 'kk-v11';
 const SHELL = `shell-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 const PRECACHE = [

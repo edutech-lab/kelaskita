@@ -229,9 +229,9 @@
 #kk table.tk{min-width:0}
 #kk table.tk td:nth-child(3),#kk table.tk th:nth-child(3){min-width:110px;white-space:normal}
 #kk table.tk td:nth-child(3){font-weight:400}
-/* Presensi: lebar seperti tabel Rekap Nilai, bisa digeser ke samping kecuali kolom Nama */
-#kk table.tp{width:max-content;min-width:100%;table-layout:auto}
-#kk table.tp .nm{position:sticky;left:0;z-index:2;min-width:110px;white-space:normal}
+/* Presensi (Input & Rekap): lebar kolom Nama disamakan dengan Input Nilai / Rekap Nilai (tabel .tn) */
+#kk table.tp{width:100%;min-width:0;table-layout:auto}
+#kk table.tp .nm{position:sticky;left:0;z-index:2;min-width:110px;width:auto;white-space:normal;word-break:normal;overflow-wrap:normal}
 #kk table.tp td.nm{background:#fff;font-weight:400;box-shadow:2px 0 4px #0147ac1a}
 #kk table.tp th.nm{background:var(--b1);z-index:4;box-shadow:2px 0 4px #0147ac33}
 #kk table.tp .kl{min-width:64px;white-space:nowrap}
