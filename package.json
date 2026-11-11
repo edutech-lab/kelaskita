@@ -1,6 +1,6 @@
 {
   "name": "kelaskita",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "private": true,
   "description": "KelasKita (presensi, tugas, nilai) PWA statis + Firebase, siap diimpor ke Vercel dari GitHub.",
   "scripts": {

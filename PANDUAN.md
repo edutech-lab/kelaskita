@@ -64,7 +64,7 @@ Catatan penting:
 - Backup bersifat manual. Biasakan mengunduh sebelum perubahan besar (awal semester, impor data, naik kelas, dll).
 
 ## 7. Memperbarui aplikasi
-1. Ubah file di `public/`. Naikkan `VERSION` di `public/sw.js` (sekarang `kk-v5`, berikutnya `kk-v6`, dst.).
+1. Ubah file di `public/`. Naikkan `VERSION` di `public/sw.js` (sekarang `kk-v7`, berikutnya `kk-v8`, dst.).
 2. `git commit` lalu `git push`. Vercel otomatis deploy.
 3. Pengguna membuka aplikasi dengan internet aktif; tutup lalu buka lagi bila tampilan belum berubah.
 
@@ -83,3 +83,22 @@ Upload tugas memanggil script.google.com langsung dan tidak pernah di-cache oleh
 - Di iPhone, aplikasi terpasang menyimpan data terpisah dari Safari: login sekali lagi setelah memasang.
 - Ikon masih sementara; ganti 4 file di `public/icons/` (192, 512, maskable 512, apple-touch 180) dengan logo sekolah.
 - Jika Vercel menampilkan 404, pastikan Output Directory = `public` dan `index.html` ada di dalamnya.
+
+## 11. Tahun Ajaran & Semester (dipilih saat login)
+- Halaman login punya pilihan **Tahun Ajaran** (mis. `2026/2027 Ganjil` dan `2026/2027 Genap`) untuk Admin, Guru, dan Siswa.
+  Pilihan awal otomatis mengikuti tanggal perangkat: Juli-Desember = Ganjil, Januari-Juni = Genap.
+- Setelah login, semua data yang tampil adalah data semester yang dipilih: presensi (menurut tanggal), tugas,
+  bobot nilai, nilai, dan set awal guru. Pilihan semester tersimpan selama sesi; logout lalu login lagi untuk pindah semester.
+- **Set awal guru per semester.** Setiap semester guru mengisi set awal (tingkat dan kelas) sendiri sehingga kelas yang diampu
+  boleh berbeda. Tombol **Reset Set** (Data Guru Mapel) hanya mereset set pada semester yang dipilih saat Admin login.
+- **Bobot dan nilai per semester.** Pada semester baru guru menyimpan bobot nilai lagi; nilai semester lain tidak tersentuh.
+- **Data lama aman.** Dokumen lama yang belum punya field `per` otomatis dianggap milik `2026/2027 Ganjil`, jadi tidak perlu migrasi.
+  Dokumen baru semester lain memakai field `per` dan ID berakhiran semester (mis. `INFOR_0132628426_2026-2027_2`).
+- **Setting Admin:** kolom Semester dihapus (dipilih saat login). Kolom Tahun Ajaran dipakai sebagai batas tahun terbaru pada daftar
+  pilihan login; tahun berikutnya (mis. `2027/2028`) muncul otomatis saat tanggalnya tiba atau saat Admin mengisinya.
+- Jika `firestore.rules` Anda membatasi ID dokumen `nilai` atau `bobot` dengan pola tertentu, sesuaikan agar ID berakhiran
+  `_TAHUN_SEMESTER` (mis. `_2026-2027_2`) tetap diizinkan, lalu uji sekali di semester Genap.
+
+## 12. Rekap Nilai dan Input Nilai
+Rekap Nilai dan tabel Input Nilai menampilkan seluruh siswa satu kelas tanpa pembagian halaman. Halaman yang di-scroll (sama seperti Rekap Presensi);
+tabel hanya bergeser ke samping bila kolomnya banyak. Ekspor Excel dan Print A4 memakai seluruh data kelas.

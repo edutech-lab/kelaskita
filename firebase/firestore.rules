@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() { return request.auth != null; }
+
+    // Data master: semua bisa baca (dibutuhkan untuk validasi login guru/siswa), hanya admin (Firebase Auth) yang menulis
+    match /settings/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /siswa/{id}    { allow read: if true; allow write: if isAdmin(); }
+    match /guru/{id}     { allow read: if true; allow write: if isAdmin(); }
+
+    // Data operasional guru/siswa (login lewat dokumen, tanpa Firebase Auth)
+    match /setGuru/{id}  { allow read: if true; allow create: if true; allow update, delete: if isAdmin(); } // set awal terkunci: hanya admin bisa ubah/reset
+    match /presensi/{id} { allow read, write: if true; }
+    match /tugas/{id}    { allow read, write: if true; }
+
+    // Kumpul tugas: kiriman yang sudah berstatus "Dikonfirmasi" tidak bisa ditimpa/diperbarui lagi
+    // (siswa tidak bisa kirim ulang). Guru tetap bisa mengisi nilai (status tetap Dikonfirmasi)
+    // dan mereset tugas dengan menghapus dokumen kiriman agar siswa bisa mengirim ulang.
+    match /kumpul/{id} {
+      allow read, create, delete: if true;
+      allow update: if resource.data.status != 'Dikonfirmasi'
+                    || request.resource.data.status == 'Dikonfirmasi';
+    }
+
+    match /bobot/{id}    { allow read, write: if true; }
+    match /nilai/{id}    { allow read, write: if true; }
+  }
+}
