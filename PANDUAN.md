@@ -64,7 +64,7 @@ Catatan penting:
 - Backup bersifat manual. Biasakan mengunduh sebelum perubahan besar (awal semester, impor data, naik kelas, dll).
 
 ## 7. Memperbarui aplikasi
-1. Ubah file di `public/`. Naikkan `VERSION` di `public/sw.js` (sekarang `kk-v8`, berikutnya `kk-v9`, dst.).
+1. Ubah file di `public/`. Naikkan `VERSION` di `public/sw.js` (sekarang `kk-v9`, berikutnya `kk-v10`, dst.).
 2. `git commit` lalu `git push`. Vercel otomatis deploy.
 3. Pengguna membuka aplikasi dengan internet aktif; tutup lalu buka lagi bila tampilan belum berubah.
 
@@ -102,3 +102,8 @@ Upload tugas memanggil script.google.com langsung dan tidak pernah di-cache oleh
 ## 12. Input Presensi, Input Nilai, dan Rekap Nilai
 Tabel Input Presensi, Input Nilai, dan Rekap Nilai menampilkan seluruh siswa satu kelas tanpa pembagian halaman. Halaman yang di-scroll (sama seperti Rekap Presensi);
 tabel hanya bergeser ke samping bila kolomnya banyak. Ekspor Excel dan Print A4 memakai seluruh data kelas.
+
+## 13. Tampilan HP (layar ≤ 900 px)
+Kolom NISN disembunyikan di semua tabel (Data Siswa, Input Presensi, Konfirmasi Tugas, Input Nilai, Rekap Presensi, Rekap Nilai).
+Kolom Nama memakai gaya Rekap Presensi: huruf normal (tidak tebal) dan lebar menyesuaikan isi. Di desktop NISN tetap tampil,
+dan hasil cetak A4 serta ekspor Excel tetap memuat NISN.
